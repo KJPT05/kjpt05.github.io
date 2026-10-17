@@ -1,0 +1,13 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "org.aedtrainer.app",
+    "sha256_cert_fingerprints": [
+      "FF:40:92:FD:2F:60:7E:CC:83:7C:C3:50:4F:1E:C4:C0:47:FF:5F:18:41:A6:F7:80:E1:BA:18:FF:0A:E0:D8:91",
+      "6C:41:4C:2D:33:95:9B:ED:13:E1:13:73:78:9D:3E:B0:9D:21:2C:5F:81:F9:CD:B0:5B:6F:EE:9B:EE:CF:A2:6F",
+      "07:4F:FF:CF:10:F6:EC:4F:76:EE:1E:FB:4D:D4:D0:1A:F3:EE:79:A6:5E:95:BD:DE:BC:2E:0F:AE:85:B5:FF:73",
+      "27:4B:1B:E8:E3:B2:14:CB:7C:15:E9:96:39:5F:DB:5F:60:FE:59:EB:46:0D:EE:A6:FB:52:1B:28:1D:21:2D:27"
+    ]
+  }
+}]
