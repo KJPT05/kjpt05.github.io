@@ -1,1 +1,376 @@
-<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/AED-SIM/"><title>AED Trainer</title><a href="/AED-SIM/">AED Trainer</a>
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AED Trainer – Free CPR and defibrillator practice</title>
+<meta name="description" content="Practise CPR and using a defibrillator (AED) in about four minutes. Free, no ads, no sign-up. Voice prompts guide you just like a real AED. Training use only." />
+<meta name="theme-color" content="#0d1210" />
+<link rel="icon" href="images/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="AED Trainer – Free CPR and defibrillator practice" />
+<meta property="og:description" content="Rehearse a real adult rescue in about four minutes, with voice prompts just like a real defibrillator. Free, no ads, no sign-up." />
+<meta property="og:url" content="https://kjpt05.github.io/" />
+<meta property="og:image" content="https://kjpt05.github.io/images/share-card.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #0d1210;
+    --surface: #141b18;
+    --surface-2: #1a2320;
+    --border: #2a3531;
+    --text: #e6ece9;
+    --muted: #96a39e;
+    --faint: #5d6a65;
+    --green: #46b877;
+    --green-soft: #1c3527;
+    --green-ink: #b9f2c9;
+    --orange: #ff8a3d;
+    --orange-hover: #ffa262;
+    --amber: #ffcf6b;
+    --radius: 1rem;
+    --font-display: 'JetBrains Mono', 'Courier New', monospace;
+    --font-body: 'General Sans', 'Inter', system-ui, sans-serif;
+    --wrap: 1080px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: none; text-size-adjust: none; scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: var(--green); text-underline-offset: 3px; }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: clamp(1.5rem, 1.2rem + 1.25vw, 2.1rem); margin-bottom: 0.75rem; }
+  h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+  p { text-wrap: pretty; }
+  .wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+  .eyebrow {
+    font-family: var(--font-body); font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
+  }
+  .muted { color: var(--muted); }
+  .skip-link { position: absolute; left: -999px; }
+  .skip-link:focus { left: 1rem; top: 1rem; background: var(--surface); padding: 0.5rem 1rem; border-radius: 0.5rem; z-index: 10; }
+
+  /* ---------- header ---------- */
+  .site-header { border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; background: rgb(13 18 16 / 0.92); backdrop-filter: blur(8px); }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.8rem; }
+  .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--text); }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  .brand span { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.02em; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    font-family: var(--font-body); font-weight: 700; text-decoration: none;
+    border-radius: 0.8rem; padding: 0.85rem 1.4rem; border: 1px solid transparent;
+    transition: background 160ms, transform 160ms, border-color 160ms;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: linear-gradient(180deg, #ffc163, var(--orange)); color: #1d1206; box-shadow: 0 4px 0 #9a4513; letter-spacing: 0.06em; text-transform: uppercase; }
+  .btn-primary:hover { background: linear-gradient(180deg, #ffcd80, var(--orange-hover)); }
+  .btn-lg { font-size: 1.05rem; padding: 1.05rem 1.8rem; }
+  .btn-ghost { color: var(--text); border-color: var(--border); background: transparent; }
+  .btn-ghost:hover { border-color: var(--green); }
+  .btn-small { padding: 0.5rem 0.9rem; font-size: 0.9rem; }
+  .btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: clamp(2.5rem, 6vw, 5rem); position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -20% -10% auto auto; width: 70vmax; height: 70vmax;
+    background: radial-gradient(circle, rgb(70 184 119 / 0.16), transparent 60%); pointer-events: none;
+  }
+  .hero .wrap { display: grid; gap: 2.5rem; align-items: center; position: relative; }
+  @media (min-width: 880px) { .hero .wrap { grid-template-columns: 1.1fr 0.9fr; } }
+  .hero h1 { font-size: clamp(2.1rem, 1.4rem + 3vw, 3.4rem); margin-bottom: 1rem; }
+  .hero .lede { color: var(--muted); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem); max-width: 34em; margin-bottom: 1.75rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; margin-bottom: 1.5rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; }
+  .chips li {
+    font-size: 0.85rem; font-weight: 600; color: var(--green-ink);
+    border: 1px solid #2f5a40; background: var(--green-soft); padding: 0.3rem 0.75rem; border-radius: 999px;
+  }
+  .phones { display: flex; justify-content: center; gap: 1rem; }
+  .phone {
+    width: min(42%, 220px); border-radius: 1.6rem; overflow: hidden;
+    border: 6px solid #262d2a; box-shadow: 0 24px 60px rgb(0 0 0 / 0.5);
+  }
+  .phone:nth-child(2) { transform: translateY(2.5rem); }
+
+  /* ---------- sections ---------- */
+  section.block { padding-block: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--border); }
+  .section-intro { max-width: 40em; margin-bottom: 2rem; color: var(--muted); }
+
+  .steps { list-style: none; display: grid; gap: 1rem; counter-reset: step; }
+  @media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .steps li {
+    counter-increment: step; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem 1.25rem 1.25rem 4rem; position: relative;
+  }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 1.1rem; top: 1.15rem;
+    width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid var(--green);
+    color: var(--green); font-family: var(--font-display); font-weight: 700;
+    display: grid; place-items: center; font-size: 0.95rem;
+  }
+  .steps p { color: var(--muted); font-size: 0.95rem; }
+
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  @media (min-width: 760px) { .gallery { grid-template-columns: repeat(4, 1fr); } }
+  .gallery figure { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; }
+  .gallery img { border-radius: 0.7rem; }
+  .gallery figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+
+  .cards { display: grid; gap: 1rem; }
+  @media (min-width: 760px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+  .card ol, .card ul { padding-left: 1.2rem; color: var(--muted); display: grid; gap: 0.4rem; margin-top: 0.6rem; }
+  .card strong { color: var(--text); }
+  .card-label { font-family: var(--font-display); font-weight: 700; color: var(--green); font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+
+  /* ---------- challenge ---------- */
+  .challenge { background: linear-gradient(180deg, #13201a, var(--surface)); border: 1px solid #2a4a37; border-radius: 1.25rem; padding: clamp(1.5rem, 4vw, 2.5rem); }
+  .challenge-count { display: flex; align-items: baseline; gap: 0.6rem; margin: 1.25rem 0 0.75rem; }
+  .challenge-total { font-family: var(--font-display); font-weight: 700; color: var(--amber); font-size: clamp(2.6rem, 2rem + 3vw, 4rem); line-height: 1; }
+  .bar { height: 12px; border-radius: 999px; background: #24302b; overflow: hidden; margin-bottom: 0.75rem; }
+  .bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--amber), var(--green)); border-radius: inherit; transition: width 900ms cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* ---------- about / footer ---------- */
+  .about { display: grid; gap: 1.5rem; }
+  @media (min-width: 880px) { .about { grid-template-columns: 1fr 1fr; } }
+  .notice { align-self: start; border-left: 4px solid var(--orange); background: var(--surface); border-radius: 0.6rem; padding: 1rem 1.2rem; color: var(--muted); }
+  .notice strong { color: var(--text); }
+  .cta-band { text-align: center; }
+  .cta-band p { color: var(--muted); margin: 0.5rem auto 1.75rem; max-width: 32em; }
+  footer { border-top: 1px solid var(--border); padding-block: 2.5rem 3rem; color: var(--faint); font-size: 0.9rem; }
+  footer .wrap { display: grid; gap: 0.75rem; }
+  footer a { color: var(--muted); }
+  footer nav { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="AED Trainer home">
+      <img src="images/icon-192.png" alt="" width="32" height="32" />
+      <span>AED Trainer</span>
+    </a>
+    <a class="btn btn-ghost btn-small" href="/AED-SIM/">Open the trainer</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Free CPR + defib practice</p>
+        <h1>Would you know what to do if someone collapsed?</h1>
+        <p class="lede">AED Trainer lets you rehearse a real adult rescue in about four minutes, from the first safety check until the ambulance arrives. Spoken prompts guide you, just like a real defibrillator.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="/AED-SIM/">Start practising</a>
+          <a class="btn btn-ghost" href="#install">Add it to your phone</a>
+        </div>
+        <ul class="chips" aria-label="Key features">
+          <li>Free</li><li>No ads</li><li>No sign-up</li><li>Works offline</li><li>About 4 minutes</li>
+        </ul>
+      </div>
+      <div class="phones" aria-hidden="true">
+        <img class="phone" src="images/screen-home.jpg" alt="" width="432" height="960" />
+        <img class="phone" src="images/screen-shock.jpg" alt="" width="432" height="960" />
+      </div>
+    </div>
+  </section>
+
+  <!-- What you'll practise -->
+  <section class="block" id="practise">
+    <div class="wrap">
+      <p class="eyebrow">The full rescue</p>
+      <h2>What you'll practise</h2>
+      <p class="section-intro">Each step follows the order a bystander would take in a real cardiac arrest. Turn your volume up: the trainer speaks its instructions out loud.</p>
+      <ol class="steps">
+        <li><h3>Check it's safe</h3><p>Look for danger before you approach, then check for a response.</p></li>
+        <li><h3>Call 999</h3><p>Put your phone on speaker so you can keep your hands free.</p></li>
+        <li><h3>Check breathing</h3><p>While the call connects, check whether they are breathing normally.</p></li>
+        <li><h3>Start CPR</h3><p>Push hard and fast in the centre of the chest, keeping time with the beat.</p></li>
+        <li><h3>Use the AED</h3><p>Switch it on, place the pads where shown and stand clear while it analyses.</p></li>
+        <li><h3>Shock and restart</h3><p>Press shock if advised, then go straight back to CPR until help takes over.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Screens -->
+  <section class="block">
+    <div class="wrap">
+      <p class="eyebrow">Inside the trainer</p>
+      <h2>Feels like the real thing</h2>
+      <p class="section-intro">A simulated defibrillator talks you through every stage. You can choose whether the AED advises a shock, and practise alone or with a second rescuer (30 compressions to 2 breaths).</p>
+      <div class="gallery">
+        <figure><img src="images/screen-home.jpg" alt="AED Trainer start screen with a Start a rescue button" width="432" height="960" loading="lazy" /><figcaption>Start a rescue</figcaption></figure>
+        <figure><img src="images/screen-cpr.jpg" alt="CPR in progress screen showing a compression counter and countdown" width="432" height="960" loading="lazy" /><figcaption>CPR to the beat</figcaption></figure>
+        <figure><img src="images/screen-pads.jpg" alt="Diagram showing where to place the two AED pads on the chest" width="432" height="960" loading="lazy" /><figcaption>Place the pads</figcaption></figure>
+        <figure><img src="images/screen-shock.jpg" alt="Shock advised screen with an orange shock button" width="432" height="960" loading="lazy" /><figcaption>Shock when advised</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section class="block" id="install">
+    <div class="wrap">
+      <p class="eyebrow">Keep it handy</p>
+      <h2>Add it to your home screen</h2>
+      <p class="section-intro">AED Trainer works like an app. Add it once and it opens full screen with its own icon, and keeps working without an internet connection.</p>
+      <div class="cards">
+        <div class="card">
+          <p class="card-label">iPhone or iPad</p>
+          <ol>
+            <li>Open <a href="/AED-SIM/">the trainer</a> in <strong>Safari</strong>.</li>
+            <li>Tap the <strong>Share</strong> button (the square with an arrow).</li>
+            <li>Scroll down and tap <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <p class="card-label">Android</p>
+          <ol>
+            <li>Open <a href="/AED-SIM/">the trainer</a> in <strong>Chrome</strong>.</li>
+            <li>Tap <strong>Install</strong> if it appears, or tap the <strong>⋮</strong> menu.</li>
+            <li>Choose <strong>Add to Home screen</strong> or <strong>Install app</strong>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family CPR Challenge -->
+  <section class="block" id="challenge">
+    <div class="wrap">
+      <div class="challenge">
+        <p class="eyebrow">Family CPR Challenge</p>
+        <h2>Together, let's teach 500 family members CPR by Restart a Heart Day</h2>
+        <p class="muted">After your practice, show someone at home how to do CPR and use a defibrillator. It takes about four minutes. Then add them to the total at the end of your rescue in the trainer.</p>
+        <p class="challenge-count"><span class="challenge-total" id="challenge-total">–</span><span class="muted">of 500 taught so far</span></p>
+        <div class="bar" role="progressbar" aria-label="Family CPR Challenge progress" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0" id="challenge-bar"><span></span></div>
+        <p class="muted" id="challenge-days">Deadline: 16 October 2027</p>
+        <p class="muted" style="margin-top:0.75rem;font-size:0.9rem">Anonymous: no names or personal details are recorded.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teachers -->
+  <section class="block" id="groups">
+    <div class="wrap">
+      <p class="eyebrow">For teachers, workplaces and community groups</p>
+      <h2>Use it in a session</h2>
+      <p class="section-intro">AED Trainer works well alongside a manikin, or even a firm cushion, so people can practise compressions while the trainer talks them through the rescue.</p>
+      <div class="cards">
+        <div class="card">
+          <p class="card-label">Sharing it</p>
+          <ul>
+            <li>Share the link: <strong>kjpt05.github.io</strong></li>
+            <li>To make a QR code, open this page in Chrome, tap <strong>Share</strong> and choose <strong>QR code</strong>.</li>
+            <li>It runs in any modern browser on phones, tablets and laptops. Nobody needs to sign up.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <p class="card-label">Running a session</p>
+          <ul>
+            <li>Use <strong>Options</strong> to set the AED to always shock, never shock, or random.</li>
+            <li>Switch to <strong>two rescuers</strong> to practise 30:2 with breaths.</li>
+            <li>Open it once on Wi-Fi beforehand and it will work offline in the room.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Made by a resuscitation educator</h2>
+        <p class="muted">AED Trainer was created by Kieran Toner, a registered nurse and nurse lecturer in Northern Ireland who teaches resuscitation. The aim is simple: more people who feel confident to start CPR and use a defibrillator when someone collapses.</p>
+        <p class="muted" style="margin-top:0.9rem">The rescue sequence follows the public-access AED sequence described in Resuscitation Council UK guidance. AED Trainer is independent and is not affiliated with or endorsed by Resuscitation Council UK, the emergency services or any AED manufacturer.</p>
+      </div>
+      <div class="notice">
+        <p><strong>Training use only.</strong> AED Trainer is for familiarisation and practice. It is not a medical device and is not a substitute for an accredited CPR/AED course.</p>
+        <p style="margin-top:0.75rem"><strong>In a real emergency, call 999 or 112</strong> (or your local emergency number) and follow the call handler's instructions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="block cta-band">
+    <div class="wrap">
+      <h2>Four minutes could make the difference</h2>
+      <p>Practise now, then teach someone at home.</p>
+      <a class="btn btn-primary btn-lg" href="/AED-SIM/">Start practising</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="/AED-SIM/">Open the trainer</a>
+      <a href="/AED-SIM/privacy.html">Privacy policy</a>
+      <a href="mailto:aedtrainer.support@gmail.com">Contact</a>
+    </nav>
+    <p>Free, with no ads and no sign-up. © 2026 Kieran Toner.</p>
+  </div>
+</footer>
+
+<script>
+  // Family CPR Challenge: read-only running total (same public endpoint the trainer uses)
+  (function () {
+    var API = 'https://xitozreeepukutoyhpsg.supabase.co/rest/v1/rpc/challenge_total';
+    var KEY = 'sb_publishable_J_sh-cjwm7BYJ4FnDnBoQg_CFimhMYq';
+    var TARGET = 500;
+    var DEADLINE = new Date('2027-10-17T00:00:00+01:00');
+    var totalEl = document.getElementById('challenge-total');
+    var bar = document.getElementById('challenge-bar');
+    var daysEl = document.getElementById('challenge-days');
+
+    var now = Date.now();
+    if (now >= DEADLINE.getTime()) {
+      daysEl.textContent = 'The challenge closed on Restart a Heart Day, 16 October 2027.';
+    } else {
+      var days = Math.ceil((DEADLINE.getTime() - now) / 86400000);
+      daysEl.textContent = days + (days === 1 ? ' day' : ' days') + ' to go · Deadline 16 October 2027';
+    }
+
+    fetch(API, { method: 'POST', headers: { apikey: KEY, 'Content-Type': 'application/json' }, body: '{}' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) {
+        var t = Number(d && d.total);
+        if (!(t >= 0)) return;
+        totalEl.textContent = t.toLocaleString('en-GB');
+        bar.setAttribute('aria-valuenow', String(Math.min(t, TARGET)));
+        bar.querySelector('span').style.width = Math.min(100, (t / TARGET) * 100) + '%';
+      })
+      .catch(function () { /* offline or unavailable: leave the dash */ });
+  })();
+</script>
+</body>
+</html>
