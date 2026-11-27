@@ -151,6 +151,15 @@
   .bar { height: 12px; border-radius: 999px; background: #24302b; overflow: hidden; margin-bottom: 0.75rem; }
   .bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--amber), var(--green)); border-radius: inherit; transition: width 900ms cubic-bezier(0.16, 1, 0.3, 1); }
 
+  /* ---------- certificate ---------- */
+  .cert { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 880px) { .cert { grid-template-columns: 1.1fr 0.9fr; } }
+  .cert-img { border-radius: 0.9rem; border: 1px solid var(--border); box-shadow: 0 20px 50px rgb(0 0 0 / 0.45); transform: rotate(-1.5deg); }
+  .cert ul { list-style: none; display: grid; gap: 0.5rem; margin: 1.25rem 0 1.75rem; color: var(--muted); }
+  .cert li::before { content: "★"; color: var(--amber); margin-right: 0.6rem; }
+  .cert-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+  .cert-note { font-size: 0.9rem; color: var(--faint); margin-top: 1rem; }
+
   /* ---------- about / footer ---------- */
   .about { display: grid; gap: 1.5rem; }
   @media (min-width: 880px) { .about { grid-template-columns: 1fr 1fr; } }
@@ -193,7 +202,7 @@
           <a class="btn btn-ghost" href="#install">Add it to your phone</a>
         </div>
         <ul class="chips" aria-label="Key features">
-          <li>Free</li><li>No ads</li><li>No sign-up</li><li>Works offline</li><li>About 4 minutes</li>
+          <li>Free</li><li>No ads</li><li>No sign-up</li><li>Works offline</li><li>About 4 minutes</li><li><a href="#certificate" style="color:inherit;text-decoration:none">Free certificates</a></li>
         </ul>
       </div>
       <div class="phones" aria-hidden="true">
@@ -268,12 +277,37 @@
       <div class="challenge">
         <p class="eyebrow">Family CPR Challenge</p>
         <h2>Together, let's teach 500 family members CPR by Restart a Heart Day</h2>
-        <p class="muted">After your practice, show someone at home how to do CPR and use a defibrillator. It takes about four minutes. Then add them to the total at the end of your rescue in the trainer.</p>
+        <p class="muted">After your practice, show someone at home how to do CPR and use a defibrillator. It takes about four minutes. Then add them to the total at the end of your rescue in the trainer, and print them a <a href="#certificate">Super Rescuer certificate</a>.</p>
         <p class="challenge-count"><span class="challenge-total" id="challenge-total">–</span><span class="muted">of 500 taught so far</span></p>
         <div class="bar" role="progressbar" aria-label="Family CPR Challenge progress" aria-valuemin="0" aria-valuemax="500" aria-valuenow="0" id="challenge-bar"><span></span></div>
         <p class="muted" id="challenge-days">Deadline: 16 October 2027</p>
         <p class="muted" style="margin-top:0.75rem;font-size:0.9rem">Anonymous: no names or personal details are recorded.</p>
       </div>
+    </div>
+  </section>
+
+
+  <!-- Super Rescuer certificate -->
+  <section class="block" id="certificate">
+    <div class="wrap cert">
+      <div>
+        <p class="eyebrow">Free printable</p>
+        <h2>Super Rescuer certificates</h2>
+        <p class="muted">Taught someone at home? Reward them. Print a certificate, write their name on it, and stick it on the fridge as a reminder of what to do.</p>
+        <ul>
+          <li>Great for kids: reward them for shouting for help and "calling 999"</li>
+          <li>Lists the four key steps they practised</li>
+          <li>Prints on A4 at home, in colour or black and white</li>
+        </ul>
+        <div class="cert-actions">
+          <a class="btn btn-primary" href="certificate/super-rescuer-certificate.pdf" download>Download certificate (PDF)</a>
+          <a class="btn btn-ghost" href="/AED-SIM/">Practise first</a>
+        </div>
+        <p class="cert-note">Tip: use a cushion as the chest and two slices of bread as the defib pads. Practise on a cushion only, never on a person or pet, and never dial 999 for practice.</p>
+      </div>
+      <a href="certificate/super-rescuer-certificate.pdf" download aria-label="Download the Super Rescuer certificate">
+        <img class="cert-img" src="images/certificate-preview.jpg" alt="Super Rescuer certificate with space for a name and four CPR steps" width="1200" height="848" loading="lazy" />
+      </a>
     </div>
   </section>
 
@@ -298,6 +332,7 @@
             <li>Use <strong>Options</strong> to set the AED to always shock, never shock, or random.</li>
             <li>Switch to <strong>two rescuers</strong> to practise 30:2 with breaths.</li>
             <li>Open it once on Wi-Fi beforehand and it will work offline in the room.</li>
+            <li>Print <a href="certificate/super-rescuer-certificate.pdf" download>Super Rescuer certificates</a> for everyone who takes part.</li>
           </ul>
         </div>
       </div>
